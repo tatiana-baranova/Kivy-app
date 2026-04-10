@@ -1,28 +1,80 @@
+<MyOwnLabel@Label>
+    font_size: '25sp'
+    valign: 'middle'
+    halign: 'left'
+    text_size: self.size
+
 <Container>:
-    orientation: 'vertical'
-    padding: 30
-    spacing: 30
+    rows: 3
     text_input: text_input
-    label_text: label_text
+    label_hours: label_hours
+    label_minutes: label_minutes
+    label_seconds: label_seconds
+    label_m_seconds: label_m_seconds
+    label_weeks: label_weeks
 
-    TextInput:
-        id: text_input
-        text: ''
-        multiline: False
-        font_size: 50
+    AnchorLayout:
+        anchor_y: 'top'
+        size_hint: 1, 0.15
 
-    Label:
-        id: label_text
-        text: 'Text'
-        font_size: 40
+        TextInput:
+            text: ''
+            id: text_input
+            font_size: '45sp'
+            input_filter: 'int'
+            input_type: 'number'
+            multiline: False
 
-    FloatLayout:
-        Button:
-            text: 'go'
-            font_size: 40
+
+    GridLayout:
+        cols: 2
+        padding: [40, 0, 0, 0]
+        BoxLayout:
+            orientation: 'vertical'
+
+            MyOwnLabel:
+                text: 'Години'
+
+            MyOwnLabel:
+                text: 'Хвилини'
+
+            MyOwnLabel:
+                text: 'Секунди'
+
+            MyOwnLabel:
+                text: 'Мілісекунди'
+
+            MyOwnLabel:
+                text: 'Тижні'
+
+        BoxLayout:
+            orientation: 'vertical'
             size_hint: 0.5, 1
-            pos_hint: {'center_x': 0.5, 'y': 0}
-            on_release:
-                #self.text = 'New text'
-                root.change_something()
 
+            MyOwnLabel:
+                text: '0'
+                id: label_hours
+
+            MyOwnLabel:
+                text: '0'
+                id: label_minutes
+
+            MyOwnLabel:
+                text: '0'
+                id: label_seconds
+
+            MyOwnLabel:
+                text: '0'
+                id: label_m_seconds
+
+            MyOwnLabel:
+                text: '0'
+                id: label_weeks
+
+    BoxLayout:
+        size_hint: 0.9, 0.15
+        padding: [30, 20, 30, 20]
+        Button:
+            text: 'let go!'
+            on_release:
+                root.convert()
